@@ -48,14 +48,14 @@ def test_aws_configuration():
         
         print("\nTesting AWS configuration...")
         
-        # Load environment variables from .env file
-        load_dotenv()
-        
         # Check if .env file exists
         if not os.path.exists('.env'):
             print("✗ .env file not found")
-            print("Please create a .env file with your AWS credentials")
+            print("Please create a .env file with your AWS credentials or run: python setup_credentials.py")
             return False
+        
+        # Load environment variables from .env file
+        load_dotenv()
         
         # Get credentials from environment variables
         access_key = os.getenv("AWS_ACCESS_KEY_ID")
@@ -65,11 +65,12 @@ def test_aws_configuration():
         
         if not access_key or not secret_key:
             print("✗ AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY are required in .env file")
+            print("Please create a .env file with your AWS credentials or run: python setup_credentials.py")
             return False
         
-        print("✓ .env file found and credentials loaded")
+        print("✓ .env file found and loaded")
         
-        # Create session with credentials from .env
+        # Create session with credentials from environment variables
         session_kwargs = {
             'aws_access_key_id': access_key,
             'aws_secret_access_key': secret_key,
@@ -139,12 +140,13 @@ def main():
     
     if all([imports_ok, aws_ok, pdf_ok]):
         print("\n🎉 All tests passed! You're ready to run the vendor evaluation tool.")
-        print("Run: streamlit run main.py")
+        print("Run: streamlit run main.py --server.port 8501")
         return 0
     else:
         print("\n❌ Some tests failed. Please fix the issues above before running the application.")
         if not aws_ok:
-            print("\n💡 To set up AWS credentials, run: python setup_credentials.py")
+            print("\n💡 To set up AWS credentials, create a .env file or run:")
+            print("python setup_credentials.py")
         return 1
 
 if __name__ == "__main__":
