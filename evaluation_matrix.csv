@@ -1,0 +1,73 @@
+Requirements,cbord,arb
+Technical Requirements:,9. Must support unlimited number of cardholder plans,9. Must support unlimited number of cardholder plans
+System Architecture & Infrastructure:,accounts and privileges: Yes,accounts and privileges - Yes
+Must be cloud-based with web-based user interface,10. Must handle multiple account types (meal plans,10. Must handle multiple account types (meal plans
+Must support Windows and Mac platforms (or be platform agnostic),guest passes,guest passes
+Must provide scheduled backup of open database,declining balance,declining balance
+Must provide 24/7/365 phone support and remote administration services,etc.): Yes,etc.) - Yes
+Must use recognized industry-standard hardware and software (no refurbished equipment),17. Must integrate with dining POS systems (Clover POS,16. Must integrate with dining POS systems (Clover POS
+Must include complete detailed documentation and extensive online help,Micros 3700): Yes,Micros 3700) - Yes
+Must provide multiple user security levels/roles,30. Must support multi-tech card production (mag stripe,29. Must support multi-tech card production (mag stripe
+Database & Account Management:,proximity,proximity
+Must support unlimited cardholder database expansion,iClass SEOS): Yes,iClass SEOS) - Yes
+"Must support unlimited number of cardholder plans, accounts and privileges",Response sequence: Yes,Yes
+"Must handle multiple account types (meal plans, guest passes, declining balance, etc.)",Yes,Yes
+Must support privilege types with time period binding and usage limits,Yes,No
+Must track cardholder accounts by ID,Yes,Yes
+Must allow account balance tracking and transfer regulation,Yes,Yes
+Must provide real-time transaction history access,Yes,Yes
+Integration Requirements:,Yes,Yes
+Must integrate with PeopleSoft student information system,Yes,Yes
+Must integrate with PrismPOS/PrismWeb (Bookstore),Yes,Yes
+"Must integrate with dining POS systems (Clover POS, Micros 3700)",Yes,Yes
+Must integrate with print management solution (Pharos),Yes,Yes
+Must integrate with StarRez housing management system,Yes,Yes
+Must integrate with Kronos UKG Ready time management,Yes,Yes
+Must provide API for third-party data extraction,Yes,Yes
+Must integrate with campus Recreation Center,No,Yes
+Must support future integration with multiple door access systems,No,Yes
+Mobile & Web Capabilities:,Yes,Yes
+Must provide mobile app for retail purchases (Android & iOS),No,Yes
+Must provide web-based retail purchasing option,No,No
+Must support off-campus transactions,No,Yes
+Must allow mobile payment type limitations,Yes,Yes
+Must not require additional hardware/software for mobile/web options,No,Yes
+Card Production & Management:,Yes,Yes
+Must interface with third-party badge production systems,Yes,Yes
+"Must support multi-tech card production (mag stripe, proximity, iClass SEOS)",Yes,Yes
+Must broker credential information between systems,Yes,Yes
+Must support online photo submission and card creation,Yes,Yes
+Security & Compliance:,Yes,Yes
+Must be PCI DSS 3.2.1 compliant,Yes,Yes
+Must provide adequate cyber insurance coverage,Yes,Yes
+Must comply with WCAG 2.1AA accessibility requirements,Yes,Yes
+Must comply with Section 508 standards,Yes,Yes
+Must provide SOC 2 Type II report or equivalent security framework compliance,Yes,No
+Must patch critical vulnerabilities within 30 days,Yes,Yes
+Non-Technical Requirements:,No,Yes
+Implementation & Support:,No,Yes
+Must provide dedicated project manager,Yes,No
+Must complete implementation by May 2023 per schedule,Yes,Yes
+Must provide training and documentation,Yes,No
+Must support data migration from existing systems,No,Yes
+Must provide implementation support and consulting,Yes,Yes
+Business & Administrative:,Yes,Yes
+Must sign services agreement within 3 weeks of selection,Yes,No
+Must maintain proposed key personnel throughout project duration,No,No
+Must provide certificate of insurance with required coverages,No,No
+Must respond timely to audit requests,Yes,No
+Must provide company information security documentation,Yes,Yes
+Must submit security review documentation to CPP IT,Yes,No
+Must provide project organization chart including subcontractors,Yes,Yes
+Experience & Qualifications:,Yes,Yes
+Must have successful implementations at comparable institutions,Yes,Yes
+Must demonstrate experience with similar modernization projects,Yes,Yes
+Must provide references from similar implementations,Yes,Yes
+Reporting Capabilities:,Yes,Yes
+Must generate standard and ad-hoc reports,Yes,Yes
+Must support automated report scheduling,Yes,Yes
+Must allow report delivery via email and network locations,Yes,Yes
+Must provide real-time reporting capabilities,Yes,Yes
+Must support business intelligence tools integration,Yes,No
+Must include pre-defined report templates for common needs,No,No
+"I've organized the requirements into logical groupings while maintaining the specific, actionable nature of each requirement. This list covers both the technical capabilities needed for the system as well as the business and administrative requirements for the vendor relationship.",No,No
