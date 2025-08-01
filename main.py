@@ -27,7 +27,7 @@ class BedrockLLM:
         )
         self.client = self.session.client("bedrock-runtime", region_name=region_name)
         self.model_id = model_id
-    
+
     def call_model(self, message: str, max_tokens: int = 4000) -> str:
         """Call the Bedrock model with a given message."""
         payload = {
@@ -100,7 +100,7 @@ class VendorEvaluator:
                 # If no bullet point but it looks like a requirement
                 if len(line) > 10 and not line.startswith('Please'):
                     requirements.append(line)
-        
+
         return requirements
     
     def evaluate_vendor_proposal(self, vendor_text: str, requirements: List[str], vendor_name: str) -> Dict[str, str]:
@@ -205,15 +205,15 @@ def check_aws_credentials():
             aws_session_token=session_token,
             region_name=AWS_REGION
         )
-        
+
         # Test basic AWS access
         sts = session.client('sts')
         identity = sts.get_caller_identity()
-        
+
         # Test Bedrock access
         bedrock = session.client('bedrock', region_name=AWS_REGION)
         models = bedrock.list_foundation_models()
-        
+
         return True, f"AWS credentials valid - User: {identity.get('Arn', 'Unknown')}"
         
     except Exception as e:
@@ -222,11 +222,127 @@ def check_aws_credentials():
 def main():
     st.set_page_config(
         page_title="Vendor Evaluation Tool",
-        page_icon="📊",
-        layout="wide"
+        page_icon="csu.svg",
+        layout="wide",
+        initial_sidebar_state="expanded",
+        menu_items={
+            'Get Help': 'https://docs.streamlit.io/',
+            'Report a bug': None,
+            'About': '# Vendor Evaluation Tool\nBuilt with Streamlit and Amazon Bedrock'
+        }
     )
     
-    st.title("📊📊📊📊📊📊📊📊📊📊📊📊📊📊📊📊📊📊📊📊📊📊📊📊📊 Vendor Evaluation Tool")
+    # Apply Pantone Red theme with white background
+    st.markdown("""
+    <style>
+    /* Force sidebar to be Pantone red */
+    [data-testid="stSidebar"] {
+        background-color: #E32636 !important;
+    }
+    
+    [data-testid="stSidebar"] > div {
+        background-color: #E32636 !important;
+    }
+    
+    /* Force sidebar text to be white */
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3,
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] .stMarkdown {
+        color: #FFFFFF !important;
+    }
+    
+    /* Force sidebar radio buttons to be white text */
+    [data-testid="stSidebar"] .stRadio > label {
+        color: #FFFFFF !important;
+    }
+    
+    /* Main background white */
+    .main {
+        background-color: #FFFFFF !important;
+    }
+    
+    /* Text color black on white */
+    .stMarkdown {
+        color: #000000 !important;
+    }
+    
+    h1, h2, h3 {
+        color: #000000 !important;
+    }
+    
+    /* Buttons Pantone red */
+    .stButton > button {
+        background-color: #E32636 !important;
+        color: #FFFFFF !important;
+        border-radius: 8px !important;
+        border: none !important;
+        padding: 8px 16px !important;
+        font-weight: bold !important;
+    }
+    
+    .stButton > button:hover {
+        background-color: #B91C1C !important;
+    }
+    
+    /* File uploader Pantone red border */
+    .stFileUploader {
+        border: 2px dashed #E32636 !important;
+        border-radius: 8px !important;
+        background-color: #FFFFFF !important;
+    }
+    
+    /* Download button green */
+    .stDownloadButton > button {
+        background-color: #059669 !important;
+        color: #FFFFFF !important;
+    }
+    
+    .stDownloadButton > button:hover {
+        background-color: #047857 !important;
+    }
+    
+    /* Success message green */
+    .stSuccess {
+        background-color: #D1FAE5 !important;
+        border-color: #A7F3D0 !important;
+        color: #065F46 !important;
+    }
+    
+    /* Error message red */
+    .stError {
+        background-color: #FEE2E2 !important;
+        border-color: #FECACA !important;
+        color: #991B1B !important;
+    }
+    
+    /* Info message blue */
+    .stInfo {
+        background-color: #DBEAFE !important;
+        border-color: #BFDBFE !important;
+        color: #1E40AF !important;
+    }
+    
+    /* Links Pantone red */
+    a {
+        color: #E32636 !important;
+    }
+    
+    a:hover {
+        color: #B91C1C !important;
+    }
+    
+    /* Custom larger font for sidebar headline */
+    [data-testid="stSidebar"] h1 {
+        font-size: 2.5rem !important;
+        font-weight: bold !important;
+        line-height: 1.2 !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    st.title("Vendor Evaluation Tool")
     st.markdown("Analyze RFPs and evaluate vendor proposals using Amazon Bedrock LLM")
     
     # Check AWS credentials
@@ -251,20 +367,20 @@ def main():
         """)
         return
     
-    st.success(f"✅ {credentials_message}")
-    
     # Initialize the evaluator
     evaluator = VendorEvaluator()
     
     # Sidebar for navigation
-    st.sidebar.title("Navigation")
+    st.sidebar.markdown("# Request For Proposal's Made Simple")
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("### Navigation")
     workflow = st.sidebar.radio(
         "Select Workflow:",
         ["Workflow 1: RFP Analysis", "Workflow 2: Vendor Proposal Scoring"]
     )
     
     if workflow == "Workflow 1: RFP Analysis":
-        st.header("📋 Workflow 1: RFP Analysis & Evaluation Matrix Creation")
+        st.header(" Workflow 1: RFP Analysis & Evaluation Matrix Creation")
         
         st.markdown("""
         **Instructions:**
@@ -327,7 +443,7 @@ def main():
                     st.error("Could not extract text from the uploaded PDF.")
     
     elif workflow == "Workflow 2: Vendor Proposal Scoring":
-        st.header("🏢 Workflow 2: Vendor Proposal Scoring")
+        st.header("Workflow 2: Vendor Proposal Scoring")
         
         st.markdown("""
         **Instructions:**
@@ -408,6 +524,10 @@ def main():
                         )
                     else:
                         st.error("Could not extract text from the uploaded PDF.")
+    
+    # AWS credentials status at the bottom
+    st.markdown("---")
+    st.success(f"✅ {credentials_message}")
     
     # Footer
     st.markdown("---")
