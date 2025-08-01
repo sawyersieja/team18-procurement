@@ -107,23 +107,67 @@ def create_mock_evaluation_matrix():
 def main():
     st.set_page_config(
         page_title="Vendor Evaluation Tool - Demo",
-        page_icon="📊",
+        page_icon="csu.svg",
         layout="wide"
     )
     
-    st.title("📊 Vendor Evaluation Tool - Demo Mode")
+    # Apply Pantone red theme to demo
+    st.markdown("""
+    <style>
+    /* Force sidebar to be Pantone red */
+    [data-testid="stSidebar"] {
+        background-color: #E32636 !important;
+    }
+    
+    [data-testid="stSidebar"] > div {
+        background-color: #E32636 !important;
+    }
+    
+    /* Force sidebar text to be white */
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3,
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] .stMarkdown {
+        color: #FFFFFF !important;
+    }
+    
+    /* Force sidebar radio buttons to be white text */
+    [data-testid="stSidebar"] .stRadio > label {
+        color: #FFFFFF !important;
+    }
+    
+    /* Main background white */
+    .main {
+        background-color: #FFFFFF !important;
+    }
+    
+    /* Text color black on white */
+    .stMarkdown {
+        color: #000000 !important;
+    }
+    
+    h1, h2, h3 {
+        color: #000000 !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    st.title("Vendor Evaluation Tool - Demo Mode")
     st.markdown("**This is a demonstration of the vendor evaluation tool using mock data.**")
-    st.warning("⚠️ This is running in demo mode. For full functionality, configure AWS credentials and run `streamlit run main.py`")
+    st.warning("This is running in demo mode. For full functionality, configure AWS credentials and run `streamlit run main.py`")
     
     # Sidebar for navigation
-    st.sidebar.title("Navigation")
+    st.sidebar.markdown("# Request For Proposal's Made Simple")
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("### Navigation")
     workflow = st.sidebar.radio(
         "Select Workflow:",
         ["Workflow 1: RFP Analysis", "Workflow 2: Vendor Proposal Scoring"]
     )
     
     if workflow == "Workflow 1: RFP Analysis":
-        st.header("📋 Workflow 1: RFP Analysis & Evaluation Matrix Creation")
+        st.header("Workflow 1: RFP Analysis & Evaluation Matrix Creation")
         
         st.markdown("""
         **Instructions:**
@@ -177,7 +221,7 @@ def main():
             st.info("Please upload an RFP PDF file to begin analysis.")
     
     elif workflow == "Workflow 2: Vendor Proposal Scoring":
-        st.header("🏢 Workflow 2: Vendor Proposal Scoring")
+        st.header("Workflow 2: Vendor Proposal Scoring")
         
         st.markdown("""
         **Instructions:**
